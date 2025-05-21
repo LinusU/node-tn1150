@@ -5,22 +5,28 @@ HFS Plus string utilities.
 ## Usage
 
 ```js
-const tn1150 = require('tn1150')
+import { compare, normalize } from 'tn1150'
 
 // Sort filenames
-filenames.sort(tn1150.compare)
+filenames.sort(compare)
 
 // Normalize filename
-filename = tn1150.normalize(filename)
+filename = normalize(filename)
 ```
 
 ## API
 
-### `tn1150.compare(lhs: string, rhs: string) -> number`
+### `compare(lhs, rhs)`
 
-Compare two strings using the algorithm from TN1150. Useful for sorting
-filenames.
+- `lhs` (`string`, required)
+- `rhs` (`string`, required)
+- returns `number`
 
-### `tn1150.normalize(text: string) -> string`
+Compare two strings using the algorithm from TN1150. Useful for sorting filenames.
+
+### `normalize(input)`
+
+- `input` (`string`, required)
+- returns `string`
 
 Normalize a string using Unicode Canonical Decomposition.

@@ -14,9 +14,9 @@
  *
  */
 
-var unorm = require('unorm')
+import unorm from 'unorm'
 
-var lowerCaseMap = new Map([
+const lowerCaseMap = new Map([
   [0x0000, 0xffff],
   [0x0041, 0x0061],
   [0x0042, 0x0062],
@@ -348,12 +348,10 @@ var lowerCaseMap = new Map([
   [0xff3a, 0x0020]
 ])
 
-function HFSPlusFastUnicodeCompare (str1, str2) {
-  var i, c1, c2
-
-  for (i = 0; i < Math.min(str1.length, str2.length); i++) {
-    c1 = str1.charCodeAt(i)
-    c2 = str2.charCodeAt(i)
+export function compare (str1, str2) {
+  for (let i = 0; i < Math.min(str1.length, str2.length); i++) {
+    let c1 = str1.charCodeAt(i)
+    let c2 = str2.charCodeAt(i)
 
     if (lowerCaseMap.has(c1)) {
       c1 = lowerCaseMap.get(c1)
@@ -375,5 +373,4 @@ function HFSPlusFastUnicodeCompare (str1, str2) {
   return 0
 }
 
-exports.compare = HFSPlusFastUnicodeCompare
-exports.normalize = unorm.nfd
+export const normalize = unorm.nfd
